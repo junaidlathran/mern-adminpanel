@@ -1,0 +1,24 @@
+version: '3'
+services:
+  ui:
+    image: registry.gitlab.com/junaidlathransoft/mern-frontend:latest
+    ports:
+      - '3000:80'
+    deploy:
+        replicas : 2
+    depends_on:
+      - api
+  api:
+    image: registry.gitlab.com/junaidlathransoft/mern-backend:latest
+    ports:
+      - '5000:5000'
+    deploy:
+        replicas : 2
+    depends_on:
+      - mongo
+  mongo:
+    image: registry.gitlab.com/junaidlathransoft/mern-db:latest
+    ports:
+      - '27017:27017'
+    deploy:
+        replicas : 2
